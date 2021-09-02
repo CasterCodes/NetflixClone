@@ -1,14 +1,38 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HomeScreen, MovieDetailsScreen } from "../screens";
+import { AntDesign } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 
-const HomeStack = () => {
+const HomeStack = ({ navigation }) => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="MovieDetail" component={MovieDetailsScreen} />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetailsScreen}
+        options={{
+          title: "",
+          headerStyle: {
+            backgroundColor: "black",
+          },
+          headerLeft: () => {
+            return (
+              <AntDesign
+                name="left"
+                size={24}
+                color="white"
+                onPress={() => navigation.push("HomeScreen")}
+              />
+            );
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,7 +1,15 @@
 import React from "react";
-import { FlatList, Image, Text, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 
-const MoviesCategory = ({ category }) => {
+const MoviesCategory = ({ category, navigation }) => {
   return (
     <>
       <Text style={styles.title}>{category.title}</Text>
@@ -10,7 +18,10 @@ const MoviesCategory = ({ category }) => {
         horizontal={true}
         renderItem={({ item }) => (
           <View style={{ flex: 1 }}>
-            <Image style={styles.image} source={{ uri: item.poster }} />
+            <Pressable
+              onPress={() => navigation.push("MovieDetail", { id: item.id })}>
+              <Image style={styles.image} source={{ uri: item.poster }} />
+            </Pressable>
           </View>
         )}
         showsHorizontalScrollIndicator={false}
