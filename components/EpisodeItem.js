@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-const EpisodeItem = ({ episode }) => {
+const EpisodeItem = ({ episode, onPress }) => {
   return (
-    <View>
+    <Pressable onPress={() => onPress(episode)}>
       <View style={styles.row}>
         <Image style={styles.image} source={{ uri: episode.poster }} />
         <View style={styles.titleContainer}>
@@ -14,7 +14,7 @@ const EpisodeItem = ({ episode }) => {
         <AntDesign name="download" size={24} color="white" />
       </View>
       <Text style={styles.plot}>{episode.plot}</Text>
-    </View>
+    </Pressable>
   );
 };
 

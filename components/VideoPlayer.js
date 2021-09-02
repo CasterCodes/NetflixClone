@@ -1,12 +1,48 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useRef, useState, useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { Video } from "expo-av";
 
-const VideoPlayer = ({ video }) => {
+const VideoPlayer = ({ episode }) => {
+  const [status, setStatus] = useState({});
+  const video = useRef(null);
+
+  useEffect(() => {
+    if (!video) {
+      return;
+    }
+    (async () => {
+      await video?.current?.unloadAsync();
+      await video?.current?.loadAsync({ uri: episode.video }, {}, false);
+    })();
+  }, [episode]);
+
   return (
     <View>
-      <Text></Text>
+      <Video
+        ref={video}
+        style={styles.video}
+        source={{
+          uri: episode.video,
+        }}
+        useNativeControls
+        resizeMode="contain"
+        isLooping
+        onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+        posterSource={{
+          uri: episode.poster,
+        }}
+        usePoster={true}
+        posterStyle={{ resizeMode: "cover" }}
+      />
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  video: {
+    width: "100%",
+    height: 200,
+    aspectRatio: 16 / 9,
+  },
+});
 export default VideoPlayer;
