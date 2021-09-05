@@ -3,3 +3,7 @@ export { default as HomeScreen } from "./HomeScreen";
 export { default as SearchScreen } from "./SearchScreen";
 export { default as DownloadsScreen } from "./DownloadsScreen";
 export { default as MovieDetailsScreen } from "./MovieDetailsScreen";
+export { default as LoaderScreen } from "./LoaderScreen";
+export { default as IntroductionScreen } from "./IntroductionScreen";
+export { default as SignupScreen } from "./SignupScreen";
+export { default as SigninScreen } from "./SigninScreen";

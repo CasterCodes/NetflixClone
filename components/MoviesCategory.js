@@ -5,7 +5,6 @@ import {
   Text,
   StyleSheet,
   View,
-  TouchableOpacity,
   Pressable,
 } from "react-native";
 
@@ -19,7 +18,9 @@ const MoviesCategory = ({ category, navigation }) => {
         renderItem={({ item }) => (
           <View style={{ flex: 1 }}>
             <Pressable
-              onPress={() => navigation.push("MovieDetail", { id: item.id })}>
+              onPress={() =>
+                navigation.navigate("MovieDetail", { id: item.id })
+              }>
               <Image style={styles.image} source={{ uri: item.poster }} />
             </Pressable>
           </View>
