@@ -25,7 +25,7 @@ export default function App() {
     }, 500);
   }, [loading]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   if (loading) return <LoaderScreen />;
 
